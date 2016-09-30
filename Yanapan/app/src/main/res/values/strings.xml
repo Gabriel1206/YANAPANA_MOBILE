@@ -4,4 +4,8 @@
     <string name="username">User Name</string>
     <string name="userpassword">User Password</string>
     <string name="title_activity_menu_p">MenuPActivity</string>
+    <string name="title_activity_menu">MenuActivity</string>
+    <string name="menu_top">User name</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
