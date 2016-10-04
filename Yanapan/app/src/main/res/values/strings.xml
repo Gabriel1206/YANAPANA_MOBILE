@@ -12,5 +12,8 @@
     <string name="hint_nombre">User</string>
     <string name="hint_telefono">Phone</string>
     <string name="hint_correo">Mail</string>
+    <string name="title_activity_menus">MenusActivity</string>
+    <string name="name_work">Visitator</string>
+    <string name="name">Juan Palacios</string>
 
 </resources>
