@@ -1,23 +1,46 @@
 package pe.edu.upc.yanapan.activities;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTabHost;
+import android.view.View;
 
 import pe.edu.upc.yanapan.R;
 import pe.edu.upc.yanapan.tabs.Tab1;
 import pe.edu.upc.yanapan.tabs.Tab2;
 import pe.edu.upc.yanapan.tabs.Tab3;
 
+import static pe.edu.upc.yanapan.R.id.campo_ID;
+
 public class VisitActivity extends FragmentActivity {
 
     private FragmentTabHost tabHost;
+    FloatingActionButton ftnsave ;
+
+
+
+
+
+
+
+
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_visit);
+
+
+
+        final Context context =this;
+        SharedPreferences preferences = getSharedPreferences("Archivo SP", context.MODE_PRIVATE);
+        ftnsave = (FloatingActionButton) findViewById(R.id.fabsave);
+
+
+
         tabHost= (FragmentTabHost) findViewById(android.R.id.tabhost);
         tabHost.setup(this,
                 getSupportFragmentManager(),android.R.id.tabcontent);

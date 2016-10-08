@@ -25,7 +25,7 @@
                 android:layout_height="wrap_content"
                 android:ems="10"
                 android:hint="@string/hint_ID"
-                android:inputType="number"
+
                 android:singleLine="true" />
         </android.support.design.widget.TextInputLayout>
     </LinearLayout>
@@ -211,6 +211,8 @@
             android:text="Acept"
             android:textColor="@android:color/white" />
     </LinearLayout>
+
+
 
 
 
