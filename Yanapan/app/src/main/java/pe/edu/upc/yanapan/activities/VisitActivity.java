@@ -18,13 +18,6 @@ import static pe.edu.upc.yanapan.R.id.campo_ID;
 public class VisitActivity extends FragmentActivity {
 
     private FragmentTabHost tabHost;
-    FloatingActionButton ftnsave ;
-
-
-
-
-
-
 
 
 
@@ -34,10 +27,6 @@ public class VisitActivity extends FragmentActivity {
         setContentView(R.layout.activity_visit);
 
 
-
-        final Context context =this;
-        SharedPreferences preferences = getSharedPreferences("Archivo SP", context.MODE_PRIVATE);
-        ftnsave = (FloatingActionButton) findViewById(R.id.fabsave);
 
 
 
