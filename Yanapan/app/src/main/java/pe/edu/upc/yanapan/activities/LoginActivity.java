@@ -52,15 +52,12 @@ public class LoginActivity extends AppCompatActivity {
                 getLogin(user, password);
                 Log.d("Usuario: ", v_user.toString());
                 Log.d("Password: ", v_pass.toString());
-                if (user.toUpperCase().equals(v_user.toString().toUpperCase())&& password.toUpperCase().equals(v_pass.toString().toUpperCase())) {
-
+                if (user.equals(v_user.toString())&& password.equals(v_pass.toString())) {
                     Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(menu);
                 }
-
                 else{
                     Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
-
                 }
 
             }
