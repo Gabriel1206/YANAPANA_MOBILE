@@ -13,7 +13,6 @@
     tools:context="pe.edu.upc.yanapan.activities.MenuActivity"
     tools:showIn="@layout/activity_menu"
     android:background="@drawable/fondo2"
-
     >
 
 
