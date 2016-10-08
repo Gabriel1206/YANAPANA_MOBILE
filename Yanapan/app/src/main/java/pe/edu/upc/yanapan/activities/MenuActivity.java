@@ -1,4 +1,4 @@
-package pe.edu.upc.yanapan;
+package pe.edu.upc.yanapan.activities;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+
+import pe.edu.upc.yanapan.R;
 
 public class MenuActivity extends AppCompatActivity {
     ListView listView;

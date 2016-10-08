@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:baselineAligned="false">
+
+
+    <RadioGroup
+        android:id="@+id/AtHome"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        >
+
+        <RadioButton
+            android:id="@+id/radiobtnYesH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="At Home">
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/radiobtnNoH"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="At Member">
+        </RadioButton>
+    </RadioGroup>
+
+<Spinner
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/sp">
+
+</Spinner>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Disability Movement"
+        />
+
+    <RadioGroup
+        android:id="@+id/Disability_Movement"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        >
+
+        <RadioButton
+            android:id="@+id/radiobtnYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Yes">
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/radiobtnNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No">
+        </RadioButton>
+    </RadioGroup>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Knowledge"/>
+
+    <RadioGroup
+        android:id="@+id/Knowledge"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        >
+
+        <RadioButton
+            android:id="@+id/radiobtnYesK"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Yes">
+        </RadioButton>
+
+        <RadioButton
+        android:id="@+id/radiobtnNoK"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No">
+    </RadioButton>
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Person Abandoned"/>
+
+    <RadioGroup
+        android:id="@+id/Person_Abandoned"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        >
+
+        <RadioButton
+            android:id="@+id/radiobtnYesP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Yes">
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/radiobtnNoP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No">
+        </RadioButton>
+    </RadioGroup>
+
+    <TextView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Serious Illnes"/>
+
+    <RadioGroup
+        android:id="@+id/Serious_Illnes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        >
+
+        <RadioButton
+            android:id="@+id/radiobtnYesS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="Yes">
+        </RadioButton>
+
+        <RadioButton
+            android:id="@+id/radiobtnNoS"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="No">
+        </RadioButton>
+    </RadioGroup>
+
+</LinearLayout>

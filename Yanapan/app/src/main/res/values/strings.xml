@@ -9,9 +9,13 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_visit">VisitActivity</string>
+    <string name="hint_ID">DNI</string>
     <string name="hint_nombre">User</string>
-    <string name="hint_telefono">Phone</string>
-    <string name="hint_correo">Mail</string>
+    <string name="hint_lastName">Last Name</string>
+    <string name="hint_city">City</string>
+    <string name="hint_distritct">Disctrict</string>
+    <string name="hint_address">Address</string>
+    <string name="hint_observation">Observation</string>
     <string name="title_activity_menus">MenusActivity</string>
     <string name="name_work">Visitator</string>
     <string name="name">Juan Palacios</string>
