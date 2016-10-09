@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="pe.edu.upc.yanapan.activities.MenuActivity"
+    tools:context="pe.edu.upc.yanapan.activities.MenuActivity$PlaceholderFragment"
    >
 
     <android.support.design.widget.AppBarLayout

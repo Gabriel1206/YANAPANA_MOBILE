@@ -49,10 +49,18 @@ public class LoginActivity extends AppCompatActivity {
 
                 String user = ((EditText) findViewById(R.id.c_name)).getText().toString();
                 String password = ((EditText) findViewById(R.id.c_password)).getText().toString();
-                getLogin(user, password);
-                Log.d("Usuario: ", v_user.toString());
-                Log.d("Password: ", v_pass.toString());
-                if (user.equals(v_user.toString())&& password.equals(v_pass.toString())) {
+                Log.d("user",user);
+                Log.d("password",password);
+
+                try {
+                    getLogin(user, password);
+                }catch (Exception e){
+                    Log.d("Error_WEBService",e.getMessage());
+                }
+                //Log.d("Usuario: ", v_user);
+                //Log.d("Password: ", v_pass.toString());
+                //if (user.equals("admin")&& password.equals("admin")) {
+                if (user.equals(v_user)&& password.equals(v_pass)) {
                     Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(menu);
                 }
@@ -66,8 +74,10 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void getLogin(String userNick, String password){
-        final String LOGIN_Url = "http://192.168.1.11:8080/Yanapan/rest/v1/users?user=" + userNick + "&password=" + password;
-        Log.d("getLogin","Entrando a la funcion");
+        //final String LOGIN_Url = "http://192.168.1.11:8080/Yanapan/rest/v1/users?user=" + userNick + "&password=" + password;
+        final String LOGIN_Url = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/users?user" + userNick + "&password=" + password;
+        Log.d("getLogin","http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/users?user=" + userNick + "&password=" + password);
+
         AndroidNetworking.get(LOGIN_Url).setPriority(Priority.HIGH).build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
             public void onResponse(JSONObject response) {
@@ -75,7 +85,6 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     v_user = response.getString("nickUser");
                     v_pass = response.getString("password");
-                    Log.d("nickUser",response.getString("nickUser"));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
