@@ -37,22 +37,11 @@ public class LoginActivity extends AppCompatActivity{
         {
             @Override
             public void onClick(View v) {
-
-                user = (EditText) findViewById(R.id.c_name);
-                password = (EditText) findViewById(R.id.c_password);
-                getLogin(user.getText().toString(), password.getText().toString());
-                /*Log.d("Respuesta Afuera",respuestaAfuera[0] + " - " + respuestaAfuera[1]);
-                if (user.getText().toString().equals(v_user)&& password.getText().toString().equals(v_pass)) {
-                    Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
-                    startActivity(menu);
-                }
-                else{
-                    Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
-                }*/
-
+            user = (EditText) findViewById(R.id.c_name);
+            password = (EditText) findViewById(R.id.c_password);
+            getLogin(user.getText().toString(), password.getText().toString());
             }
         });
-        ;
     }
 
     private void getLogin(String j_userNick, String j_password){
@@ -75,7 +64,6 @@ public class LoginActivity extends AppCompatActivity{
                     respuesta[0] = v_user;
                     respuesta[1] = v_pass;
                     if (user.getText().toString().equals(v_user)&& password.getText().toString().equals(v_pass)) {
-                        //if (user.equals(v_user)&& password.equals(v_pass)) {
                         Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
                         startActivity(menu);
                     }
@@ -91,6 +79,7 @@ public class LoginActivity extends AppCompatActivity{
             @Override
             public void onError(ANError anError) {
                 Log.d("getLogin: Error","Error:"  + anError.toString());
+                Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
             }
         });
     }
