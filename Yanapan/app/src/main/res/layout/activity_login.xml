@@ -13,13 +13,9 @@
         android:layout_height="wrap_content"
         android:theme="@style/AppTheme.AppBarOverlay">
 
-
     </android.support.design.widget.AppBarLayout>
 
     <include layout="@layout/content_login" />
-
-
-
 
 
     <ImageView
@@ -30,15 +26,13 @@
 
     <Button
         android:id="@+id/LogIn"
-    android:text="Log In"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:layout_centerHorizontal="true"
-    android:layout_marginTop="360dp"
-    android:layout_marginLeft="80dp"
-     android:textColor="#FFFFFF"
-        android:backgroundTint="#607D8B"
-
-     />
+        android:text="Log In"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="360dp"
+        android:layout_marginLeft="80dp"
+        android:textColor="#FFFFFF"
+        android:backgroundTint="#607D8B" />
 
 </android.support.design.widget.CoordinatorLayout>

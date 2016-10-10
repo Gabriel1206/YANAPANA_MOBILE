@@ -1,44 +1,31 @@
 package pe.edu.upc.yanapan.activities;
 
-import android.location.Location;
+import android.content.Context;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
-import android.widget.ToggleButton;
-
+import android.support.v4.app.FragmentActivity;
 import pe.edu.upc.yanapan.R;
 
-public class CheckActivity extends AppCompatActivity {
 
+public class CheckActivity extends FragmentActivity {
 
-
-
-
+    /*GPS Permission*/
+    private static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 11;
+    private static final int MY_PERMISSION_ACCESS_FINE_LOCATION = 12;
+    /*Position*/
+    private static final int MINIMUM_TIME = 1000; //10s
+    private static final int MINIMUM_DISTANCE = 50; //50m
+    /*GPS*/
+    private String mProviderName;
+    private LocationManager mLocationManager;
+    private LocationListener mLocationListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
 
-
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        //Ubicacion ub = new Ubicacion(this);
     }
-
-
-
-
-
 }
