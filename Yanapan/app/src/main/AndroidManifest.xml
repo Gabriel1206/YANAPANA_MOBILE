@@ -9,9 +9,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <!-- Permisos de GPS -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -30,6 +29,10 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".activities.CheckActivity"
+            android:label="@string/title_activity_check"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
             android:name=".activities.VisitActivity"
             android:label="@string/title_activity_visit"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -37,11 +40,6 @@
             android:name=".activities.MenuActivity"
             android:label="@string/title_activity_menus"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <service
-            android:name=".services.GpsService"
-            android:enabled="true"
-            android:exported="true"></service>
     </application>
 
 </manifest>

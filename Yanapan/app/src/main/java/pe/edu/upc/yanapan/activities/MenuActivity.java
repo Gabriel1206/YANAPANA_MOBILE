@@ -10,7 +10,6 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +17,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-
-import java.security.PublicKey;
 
 import pe.edu.upc.yanapan.R;
 import pe.edu.upc.yanapan.services.GpsService;
@@ -62,31 +59,15 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                if( position ==0){
+                    Intent check = new Intent(view.getContext(),CheckActivity.class);
+                    startActivity(check);
+                }
                 if( position == 1){
                     Intent visits = new Intent(view.getContext(),VisitActivity.class);
                     startActivity(visits);
                 }
             }
         });
-    }
-
-
-    public static class PlaceholderFragment extends Fragment {
-
-        public PlaceholderFragment(){
-
-        }
-
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.activity_check, container, false);
-
-            GpsService gpsService = new GpsService(getActivity().getApplicationContext());
-            gpsService.setView(rootView.findViewById(R.id.txtUbicacion));
-            gpsService.setView(rootView.findViewById(R.id.txtPosicion));
-
-            return rootView;
-        }
-
     }
 }

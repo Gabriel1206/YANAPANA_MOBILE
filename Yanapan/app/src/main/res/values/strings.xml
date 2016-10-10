@@ -9,6 +9,7 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="title_activity_visit">VisitActivity</string>
+    <string name="title_activity_check">CheckActivity</string>
     <string name="hint_ID">DNI</string>
     <string name="hint_nombre">User</string>
     <string name="hint_lastName">Last Name</string>

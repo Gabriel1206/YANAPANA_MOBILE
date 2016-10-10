@@ -1,7 +1,6 @@
 package pe.edu.upc.yanapan.activities;
 
 import android.content.Intent;
-import android.icu.util.RangeValueIterator;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -9,30 +8,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
-
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-
-import java.io.Console;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import pe.edu.upc.yanapan.R;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity{
     public String v_user;
     public String v_pass;
+    public String[] respuestaAfuera = new String[2];
+
+    Button button;
+    EditText user;
+    EditText password;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,26 +32,21 @@ public class LoginActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button button = (Button) findViewById(R.id.LogIn);
+        button = (Button) findViewById(R.id.LogIn);
         button.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v) {
 
-                String user = ((EditText) findViewById(R.id.c_name)).getText().toString();
-                String password = ((EditText) findViewById(R.id.c_password)).getText().toString();
-                Log.d("user",user);
-                Log.d("password",password);
+                user = (EditText) findViewById(R.id.c_name);
+                password = (EditText) findViewById(R.id.c_password);
+                Log.d("user", "[" + user.getText().toString() + "]");
+                Log.d("password", "[" + password.getText().toString() + "]");
+                String[] respuestaAfuera = getLogin(user.getText().toString(), password.getText().toString());
+                Log.d("Respuesta Afuera",respuestaAfuera[0] + " - " + respuestaAfuera[1]);
 
-                try {
-                    getLogin(user, password);
-                }catch (Exception e){
-                    Log.d("Error_WEBService",e.getMessage());
-                }
-                //Log.d("Usuario: ", v_user);
-                //Log.d("Password: ", v_pass.toString());
-                //if (user.equals("admin")&& password.equals("admin")) {
-                if (user.equals(v_user)&& password.equals(v_pass)) {
+                if (user.getText().toString().equals(v_user)&& password.getText().toString().equals(v_pass)) {
+                //if (user.equals(v_user)&& password.equals(v_pass)) {
                     Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(menu);
                 }
@@ -73,10 +59,18 @@ public class LoginActivity extends AppCompatActivity {
         ;
     }
 
-    private void getLogin(String userNick, String password){
+    private String[] getLogin(String userNick, String password){
         //final String LOGIN_Url = "http://192.168.1.11:8080/Yanapan/rest/v1/users?user=" + userNick + "&password=" + password;
-        final String LOGIN_Url = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/users?user" + userNick + "&password=" + password;
-        Log.d("getLogin","http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/users?user=" + userNick + "&password=" + password);
+        //final String[] respuesta = {""};
+        final String[] respuesta = new String[2];
+        String cadena = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/users?user=";
+        cadena = cadena + userNick;
+        cadena = cadena + "&password=";
+        cadena = cadena + password;
+        Log.d("URL_WS",cadena);
+        final String LOGIN_Url = cadena;
+
+        Log.d("getLogin",cadena);
 
         AndroidNetworking.get(LOGIN_Url).setPriority(Priority.HIGH).build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
@@ -85,6 +79,10 @@ public class LoginActivity extends AppCompatActivity {
                 try {
                     v_user = response.getString("nickUser");
                     v_pass = response.getString("password");
+                    //respuesta[0] = v_user + "," + v_pass;
+                    respuesta[0] = v_user;
+                    respuesta[1] = v_pass;
+                    Log.d("Respuesta Dentro",respuesta[0]+","+respuesta[1]);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -95,6 +93,8 @@ public class LoginActivity extends AppCompatActivity {
                 Log.d("getLogin: Error","Error:"  + anError.toString());
             }
         });
-    }
 
+
+        return respuesta;
+    }
 }
