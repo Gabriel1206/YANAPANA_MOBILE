@@ -40,37 +40,29 @@ public class LoginActivity extends AppCompatActivity{
 
                 user = (EditText) findViewById(R.id.c_name);
                 password = (EditText) findViewById(R.id.c_password);
-                Log.d("user", "[" + user.getText().toString() + "]");
-                Log.d("password", "[" + password.getText().toString() + "]");
-                String[] respuestaAfuera = getLogin(user.getText().toString(), password.getText().toString());
-                Log.d("Respuesta Afuera",respuestaAfuera[0] + " - " + respuestaAfuera[1]);
-
+                getLogin(user.getText().toString(), password.getText().toString());
+                /*Log.d("Respuesta Afuera",respuestaAfuera[0] + " - " + respuestaAfuera[1]);
                 if (user.getText().toString().equals(v_user)&& password.getText().toString().equals(v_pass)) {
-                //if (user.equals(v_user)&& password.equals(v_pass)) {
                     Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
                     startActivity(menu);
                 }
                 else{
                     Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
-                }
+                }*/
 
             }
         });
         ;
     }
 
-    private String[] getLogin(String userNick, String password){
-        //final String LOGIN_Url = "http://192.168.1.11:8080/Yanapan/rest/v1/users?user=" + userNick + "&password=" + password;
-        //final String[] respuesta = {""};
+    private void getLogin(String j_userNick, String j_password){
         final String[] respuesta = new String[2];
         String cadena = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/users?user=";
-        cadena = cadena + userNick;
+        cadena = cadena + j_userNick;
         cadena = cadena + "&password=";
-        cadena = cadena + password;
+        cadena = cadena + j_password;
         Log.d("URL_WS",cadena);
         final String LOGIN_Url = cadena;
-
-        Log.d("getLogin",cadena);
 
         AndroidNetworking.get(LOGIN_Url).setPriority(Priority.HIGH).build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
@@ -82,7 +74,15 @@ public class LoginActivity extends AppCompatActivity{
                     //respuesta[0] = v_user + "," + v_pass;
                     respuesta[0] = v_user;
                     respuesta[1] = v_pass;
-                    Log.d("Respuesta Dentro",respuesta[0]+","+respuesta[1]);
+                    if (user.getText().toString().equals(v_user)&& password.getText().toString().equals(v_pass)) {
+                        //if (user.equals(v_user)&& password.equals(v_pass)) {
+                        Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
+                        startActivity(menu);
+                    }
+                    else{
+                        Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -93,8 +93,5 @@ public class LoginActivity extends AppCompatActivity{
                 Log.d("getLogin: Error","Error:"  + anError.toString());
             }
         });
-
-
-        return respuesta;
     }
 }
