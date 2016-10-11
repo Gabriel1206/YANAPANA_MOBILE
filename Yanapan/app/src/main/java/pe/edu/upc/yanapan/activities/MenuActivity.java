@@ -70,6 +70,8 @@ public class MenuActivity extends AppCompatActivity {
                     Intent visits = new Intent(view.getContext(),CheckActivity.class);
                     startActivity(visits);
                 }
+                if( position == 2){
+                }
             }
         });
     }
