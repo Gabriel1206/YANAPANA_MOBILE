@@ -17,16 +17,24 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import pe.edu.upc.yanapan.R;
+import pe.edu.upc.yanapan.model.WorkingDate;
 
 
 public class CheckActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiClient.ConnectionCallbacks, View.OnClickListener {
+        GoogleApiClient.ConnectionCallbacks {
 
     /*GPS Permission*/
    // private static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 11;
@@ -50,6 +58,9 @@ public class CheckActivity extends AppCompatActivity implements
     Spinner list;
     String[] dat = {"I", "O"};
 
+
+    final String Check_Url = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/workingdate";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,6 +79,69 @@ public class CheckActivity extends AppCompatActivity implements
                 .addConnectionCallbacks(this)
                 .addApi(LocationServices.API)
                 .build();
+
+
+        WorkingDate check = new WorkingDate();
+        check.setIdUser(0);
+        check.setLongitude("-2.121333");
+        check.setLatitude("-34.54665");
+        check.setType("I");
+
+
+
+        final JSONObject jsonObject = new JSONObject();
+        try {
+            /*
+            jsonObject.put("idVisit", 0);
+            jsonObject.put("longitude", "-2.121333");
+            jsonObject.put("latitude", "-34.54665");
+            jsonObject.put("user", user);
+            jsonObject.put("lstDetailVisitBeneficiary", listaBeneficiario);
+            */
+            jsonObject.put("", check);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+
+        btnSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //Consume el WebService para grabar
+                AndroidNetworking.post(Check_Url)
+                        .addJSONObjectBody(jsonObject) // posting json
+                        //.addBodyParameter("visita", String.valueOf(visita))
+                        .setPriority(Priority.HIGH)
+                        .build()
+                        .getAsJSONObject(new JSONObjectRequestListener(){
+
+                            @Override
+                            public void onResponse(JSONObject response) {
+                                // Get Respuesta servicio Login
+                                try {
+                                    int codigo = response.getInt("idUser");
+                                    String latitud = response.getString("longitude");
+                                    String longitud = response.getString("latitude");
+                                    String type = response.getString("type");
+
+                                    Log.i("onResponse", "Resultado : " + String.valueOf(codigo) + " - " + latitud + " - " + longitud+ " - " + type);
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+
+                            @Override
+                            public void onError(ANError anError) {
+                                Log.d("getLogin: Error","Error:"  + anError.toString());
+                            }
+                        });
+            }
+        });
+
+
     }
 
     @Override
@@ -137,8 +211,5 @@ public class CheckActivity extends AppCompatActivity implements
         }
     }
 
-    @Override
-    public void onClick(View v) {
 
-    }
 }
