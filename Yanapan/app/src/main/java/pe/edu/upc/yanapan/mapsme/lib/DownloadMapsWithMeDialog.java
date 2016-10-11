@@ -22,13 +22,15 @@
 ******************************************************************************/
 package pe.edu.upc.yanapan.mapsme.lib;
 
-import pe.com.pension65.ayza.activity.R;
+
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.view.View;
 import android.view.Window;
+
+import pe.edu.upc.yanapan.R;
 
 public class DownloadMapsWithMeDialog extends Dialog implements View.OnClickListener
 {
@@ -39,9 +41,9 @@ public class DownloadMapsWithMeDialog extends Dialog implements View.OnClickList
 
     requestWindowFeature(Window.FEATURE_NO_TITLE);
     //setContentView(R.layout.dlg_install_mwm);
-    setContentView(R.layout.dlg_install_mwm);
+    //setContentView(R.layout.dlg_install_mwm);
 
-    findViewById(R.id.btn_pro).setOnClickListener(this);
+    //findViewById(R.id.btn_pro).setOnClickListener(this);
 
     setOwnerActivity(activity);
   }
@@ -58,7 +60,7 @@ public class DownloadMapsWithMeDialog extends Dialog implements View.OnClickList
   @Override
   public void onClick(View v)
   {
-    String url = getContext().getString(R.string.url_pro);
-    onDownloadButtonClicked(url);
+    //String url = getContext().getString(R.string.url_pro);
+    //onDownloadButtonClicked(url);
   }
 }

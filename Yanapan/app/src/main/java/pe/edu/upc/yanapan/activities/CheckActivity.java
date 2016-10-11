@@ -46,7 +46,6 @@ public class CheckActivity extends AppCompatActivity implements
 
     private TextView lblLatitud;
     private TextView lblLongitud;
-    private ToggleButton btnActualizar;
     private Button btnSave;
     Spinner list;
     String[] dat = {"I", "O"};
@@ -58,7 +57,6 @@ public class CheckActivity extends AppCompatActivity implements
 
         lblLatitud = (TextView) findViewById(R.id.lblLatitud);
         lblLongitud = (TextView) findViewById(R.id.lblLongitud);
-        btnActualizar = (ToggleButton) findViewById(R.id.btnActualizar);
         btnSave = (Button) findViewById(R.id.buttonSave);
         list = (Spinner) findViewById(R.id.spinner1);
 
