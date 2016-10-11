@@ -11,9 +11,18 @@
     tools:context="pe.edu.upc.yanapan.activities.CheckActivity">
 
     <TextView
-        android:id="@+id/txtUbicacion"
-        android:text="Mi Ubicacion"
+        android:id="@+id/txtLongitud"
+        android:text="Mi Longitud"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/txtLatitud"
+        android:text="Mi Latitud"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtLongitud"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="41dp" />
 
 </RelativeLayout>

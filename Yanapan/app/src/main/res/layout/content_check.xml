@@ -13,7 +13,37 @@
     tools:context="pe.edu.upc.yanapan.activities.CheckActivity"
     tools:showIn="@layout/activity_check">
 
+    <android.support.v4.widget.CircleImageView
+        android:id="@+id/userName"
+        android:layout_width="98dp"
+        android:layout_height="98dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_menu_share" />
 
 
+    <TableLayout
+        android:id="@+id/coordinates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtPosicion"
+        android:layout_marginTop="48dp">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/txtUbicacion"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_column="0"
+                android:layout_weight="1"
+                android:gravity="center_horizontal"
+                android:text="New text"
+                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>

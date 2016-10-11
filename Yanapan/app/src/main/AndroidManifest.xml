@@ -11,6 +11,10 @@
     <!-- Permisos de GPS -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
 
     <application
         android:allowBackup="true"
@@ -40,6 +44,7 @@
             android:name=".activities.MenuActivity"
             android:label="@string/title_activity_menus"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".activities.UbicacionActivity"></activity>
     </application>
 
 </manifest>
