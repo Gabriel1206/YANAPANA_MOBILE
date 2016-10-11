@@ -18,7 +18,7 @@ import static pe.edu.upc.yanapan.R.id.campo_ID;
 public class VisitActivity extends FragmentActivity {
 
     private FragmentTabHost tabHost;
-    FloatingActionButton ftnsave ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +27,6 @@ public class VisitActivity extends FragmentActivity {
 
         final Context context =this;
         SharedPreferences preferences = getSharedPreferences("Archivo SP", context.MODE_PRIVATE);
-        ftnsave = (FloatingActionButton) findViewById(R.id.fabsave);
 
         tabHost= (FragmentTabHost) findViewById(android.R.id.tabhost);
         tabHost.setup(this,

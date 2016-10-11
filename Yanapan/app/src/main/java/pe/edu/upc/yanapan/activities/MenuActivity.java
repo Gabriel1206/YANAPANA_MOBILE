@@ -23,7 +23,7 @@ import pe.edu.upc.yanapan.services.GpsService;
 
 public class MenuActivity extends AppCompatActivity {
     ListView listView;
-    String[] valor = new String[] {"CheckIn - CheckOut","Visits" ,"Informs"};
+    String[] valor = new String[] {"CheckIn - CheckOut","Visits" ,};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,10 +59,6 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                if( position ==0){
-                    Intent check = new Intent(view.getContext(),CheckActivity.class);
-                    startActivity(check);
-                }
                 if( position == 1){
                     Intent visits = new Intent(view.getContext(),VisitActivity.class);
                     startActivity(visits);

@@ -62,7 +62,7 @@ public class CheckActivity extends AppCompatActivity implements
     private TextView lblLongitud;
     private Button btnSave;
     Spinner list;
-    String[] dat = {"I", "O"};
+    String[] dat = {"IN", "OUT"};
     User user;
     WorkingDate check;
 
@@ -103,7 +103,6 @@ public class CheckActivity extends AppCompatActivity implements
                 check.setUser(user);
                 check.setLongitude(lblLongitud.getText().toString());
                 check.setLatitude(lblLatitud.getText().toString());
-                Log.d("Valor_Seleccionado",list.getSelectedItem().toString());
                 Log.i("Valor_Seleccionado",list.getSelectedItem().toString());
                 check.setType(list.getSelectedItem().toString());
 
