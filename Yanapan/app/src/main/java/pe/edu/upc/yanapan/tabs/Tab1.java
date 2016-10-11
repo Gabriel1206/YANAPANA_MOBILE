@@ -15,7 +15,9 @@ import com.androidnetworking.AndroidNetworking;
 import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -67,8 +69,8 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         campo_Observation = (EditText) view.findViewById(R.id.campo_Observation);
         boton_aceptar = (Button) view.findViewById(R.id.boton_aceptar);
 
-        //final String LOGIN_Url = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/visit";
-        final String LOGIN_Url = "http://192.168.1.4:8088/Yanapan/rest/v1/visit";
+        final String LOGIN_Url = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/visit";
+        //final String LOGIN_Url = "http://192.168.1.4:8088/Yanapan/rest/v1/visit";
         final User user = new User();
         Profile profile = new Profile();
 
@@ -89,7 +91,7 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         try {
 
             Date date = formatter.parse(dateInString);
-            user.setBirthdate(date);
+            user.setBirthdate("769410000000");
 
         } catch (ParseException e) {
             e.printStackTrace();
@@ -135,28 +137,35 @@ public class Tab1 extends Fragment implements View.OnClickListener {
         visita.setUser(user);
         visita.setLstDetailVisitBeneficiary(listaBeneficiario);
 
-        final JSONObject jsonObject = new JSONObject();
+       // final JSONObject jsonObject = new JSONObject();
+        final JSONArray jsonArray = new JSONArray();
+        Gson gson = new Gson();
+        JSONObject jsonObject = new JSONObject();
         try {
-            /*
+
+            /*jsonArray.put(0,detalle);
             jsonObject.put("idVisit", 0);
             jsonObject.put("longitude", "-2.121333");
             jsonObject.put("latitude", "-34.54665");
             jsonObject.put("user", user);
-            jsonObject.put("lstDetailVisitBeneficiary", listaBeneficiario);
-            */
-            jsonObject.put("", visita);
+            jsonObject.put("lstDetailVisitBeneficiary",jsonArray );*/
+            jsonObject = new JSONObject(gson.toJson(visita));
+           // jsonObject.put("Visit",gson.toJson(visita) );
+            Log.d("jsonObjectManuel",gson.toJson(visita));
 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-        boton_aceptar.setOnClickListener( new View.OnClickListener() {
+        Log.d("jsonObjectRequest",visita.toString());
+        final JSONObject finalJsonObject = jsonObject;
+        boton_aceptar.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View view){
 
                 //Consume el WebService para grabar
+
                 AndroidNetworking.post(LOGIN_Url)
-                        .addJSONObjectBody(jsonObject) // posting json
+                        .addJSONObjectBody(finalJsonObject) // posting json
                         //.addBodyParameter("visita", String.valueOf(visita))
                         .setPriority(Priority.HIGH)
                         .build()
@@ -178,7 +187,8 @@ public class Tab1 extends Fragment implements View.OnClickListener {
 
                             @Override
                             public void onError(ANError anError) {
-                                Log.d("getLogin: Error","Error:"  + anError.toString());
+                                anError.printStackTrace();
+                                Log.d("getLogin: Error", anError.getErrorBody());
                             }
                         });
 
