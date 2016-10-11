@@ -15,15 +15,23 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 import pe.edu.upc.yanapan.R;
+import android.content.SharedPreferences;
 
 public class LoginActivity extends AppCompatActivity{
     public String v_user;
     public String v_pass;
+    public String v_idUser;
     public String[] respuestaAfuera = new String[2];
+
+    private static final String PREFS = "prefs";
+    private static final String PREF_ID = "idUser";
 
     Button button;
     EditText user;
     EditText password;
+
+    // Preferences object
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,8 @@ public class LoginActivity extends AppCompatActivity{
         Log.d("URL_WS",cadena);
         final String LOGIN_Url = cadena;
 
+        final String idUser = getKeptId();
+        Log.d("idUserIni" , idUser);
         AndroidNetworking.get(LOGIN_Url).setPriority(Priority.HIGH).build().getAsJSONObject(new JSONObjectRequestListener() {
             @Override
             public void onResponse(JSONObject response) {
@@ -60,10 +70,13 @@ public class LoginActivity extends AppCompatActivity{
                 try {
                     v_user = response.getString("nickUser");
                     v_pass = response.getString("password");
+                    v_idUser = response.getString("idUser");
                     //respuesta[0] = v_user + "," + v_pass;
                     respuesta[0] = v_user;
                     respuesta[1] = v_pass;
                     if (user.getText().toString().equals(v_user)&& password.getText().toString().equals(v_pass)) {
+                        setKeptId(v_idUser);
+                        Log.d("idUserFin" , idUser);
                         Intent menu = new Intent(LoginActivity.this, MenuActivity.class);
                         startActivity(menu);
                     }
@@ -82,5 +95,27 @@ public class LoginActivity extends AppCompatActivity{
                 Toast.makeText(getApplicationContext(), "Usuario Incorrecto", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    private String getKeptId() {
+        // Obtains stored name if present,
+        // otherwise returns an empty string
+        if(sharedPreferences == null) {
+            sharedPreferences = getSharedPreferences(
+                    PREFS, MODE_PRIVATE);
+        }
+        return sharedPreferences.getString(PREF_ID, "");
+    }
+
+
+    private void setKeptId(String idUser) {
+        // Stores given name in Preferences
+        if(sharedPreferences != null) {
+            // Opens Preferences file for edition
+            SharedPreferences.Editor e = sharedPreferences.edit();
+            e.putString(PREF_ID, idUser);
+            e.commit();
+        }
     }
 }
