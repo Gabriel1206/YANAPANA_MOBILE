@@ -6,25 +6,25 @@ package pe.edu.upc.yanapan.model;
 
 public class WorkingDate {
 
-    private User user;
+    private int idUser;
     private String longitude;
     private String latitude;
     private String type;
 
 
     public WorkingDate() {
-        this.user = user;
+        this.idUser = idUser;
         this.longitude = longitude;
         this.latitude = latitude;
         this.type = type;
     }
 
-    public User getUser() {
-        return user;
+    public int getIdUser() {
+        return idUser;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
     }
 
     public String getLongitude() {

@@ -23,6 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_below="@+id/btnActualizar"
         android:layout_marginLeft="50dp"
         android:layout_alignParentStart="true">
 
@@ -63,21 +64,31 @@
         android:layout_alignParentTop="true"
         android:layout_alignEnd="@+id/editText2" />
 
+    <EditText
+        android:id="@+id/campo_ID1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_ID2"
+
+        android:singleLine="true"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/lblLongitud"
+        android:layout_alignParentStart="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Type"
-        android:layout_marginTop="10dp"
-        android:layout_below="@+id/lblLongitud"
+        android:layout_alignBottom="@+id/spinner1"
         android:layout_alignParentStart="true" />
 
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/spinner1"
-        android:layout_marginTop="88dp"
-        android:layout_toEndOf="@+id/lblLongitud"
-        android:layout_marginStart="12dp" />
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/campo_ID1"
+        android:layout_toEndOf="@+id/lblLongitud" />
 
 </RelativeLayout>
