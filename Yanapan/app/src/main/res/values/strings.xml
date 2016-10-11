@@ -17,9 +17,12 @@
     <string name="hint_distritct">Disctrict</string>
     <string name="hint_address">Address</string>
     <string name="hint_observation">Observation</string>
+    <string name="hint_Type">Type</string>
+    <string name="hint_ID2">ID</string>
     <string name="title_activity_menus">MenusActivity</string>
     <string name="name_work">Visitator</string>
     <string name="name">Juan Palacios</string>
-    <string name="title_activity_check">CheckActivity</string>
+
+
 
 </resources>

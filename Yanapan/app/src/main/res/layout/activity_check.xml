@@ -10,10 +10,85 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="pe.edu.upc.yanapan.activities.CheckActivity">
 
-    <TextView
-        android:id="@+id/txtUbicacion"
-        android:text="Mi Ubicacion"
+
+    <TextView android:id="@+id/lblLongitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="longitud"
+        android:layout_below="@+id/lblLatitud"
+        android:layout_marginTop="27dp" />
+
+    <LinearLayout
+        android:id="@+id/area_Type"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/btnActualizar"
+        android:layout_marginLeft="50dp"
+        android:layout_alignParentStart="true">
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_Type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp">
+
+        </android.support.design.widget.TextInputLayout>
+    </LinearLayout>
+
+
+
+
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/til_ID1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="32dp">
+
+        </android.support.design.widget.TextInputLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSave"
+        android:text="Check"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView android:id="@+id/lblLatitud"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="latitud"
+        android:layout_alignParentTop="true"
+        android:layout_alignEnd="@+id/editText2" />
+
+    <EditText
+        android:id="@+id/campo_ID1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="@string/hint_ID2"
+
+        android:singleLine="true"
+        android:layout_marginTop="11dp"
+        android:layout_below="@+id/lblLongitud"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Type"
+        android:layout_alignBottom="@+id/spinner1"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner1"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/campo_ID1"
+        android:layout_toEndOf="@+id/lblLongitud" />
 
 </RelativeLayout>

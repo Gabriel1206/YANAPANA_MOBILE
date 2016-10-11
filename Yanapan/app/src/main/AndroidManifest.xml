@@ -31,7 +31,8 @@
         <activity
             android:name=".activities.CheckActivity"
             android:label="@string/title_activity_check"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:theme="@style/AppTheme.NoActionBar"
+        />
         <activity
             android:name=".activities.VisitActivity"
             android:label="@string/title_activity_visit"
