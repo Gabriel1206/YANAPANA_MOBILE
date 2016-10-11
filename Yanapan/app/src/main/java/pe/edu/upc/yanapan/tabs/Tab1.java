@@ -71,6 +71,11 @@ public class Tab1 extends Fragment implements View.OnClickListener {
 
         final String LOGIN_Url = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/visit";
         //final String LOGIN_Url = "http://192.168.1.4:8088/Yanapan/rest/v1/visit";
+
+
+
+
+
         final User user = new User();
         Profile profile = new Profile();
 
