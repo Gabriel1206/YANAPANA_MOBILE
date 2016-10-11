@@ -10,6 +10,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -25,7 +26,7 @@ import pe.edu.upc.yanapan.R;
 
 public class CheckActivity extends AppCompatActivity implements
         GoogleApiClient.OnConnectionFailedListener,
-        GoogleApiClient.ConnectionCallbacks {
+        GoogleApiClient.ConnectionCallbacks, View.OnClickListener {
 
     /*GPS Permission*/
    // private static final int MY_PERMISSION_ACCESS_COARSE_LOCATION = 11;
@@ -136,5 +137,10 @@ public class CheckActivity extends AppCompatActivity implements
                 Log.e(LOGTAG, "Permiso denegado");
             }
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
