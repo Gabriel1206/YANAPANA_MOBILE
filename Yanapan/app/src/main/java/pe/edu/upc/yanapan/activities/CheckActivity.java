@@ -2,6 +2,7 @@ package pe.edu.upc.yanapan.activities;
 
 
 import android.Manifest;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
 
@@ -24,11 +25,13 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import pe.edu.upc.yanapan.R;
+import pe.edu.upc.yanapan.model.User;
 import pe.edu.upc.yanapan.model.WorkingDate;
 
 
@@ -50,6 +53,9 @@ public class CheckActivity extends AppCompatActivity implements
     private static final String LOGTAG = "android-localizacion";
     private static final int PETICION_PERMISO_LOCALIZACION = 101;
 
+    private static final String PREFS = "prefs";
+    private static final String PREF_ID = "idUser";
+
     private GoogleApiClient apiClient;
 
     private TextView lblLatitud;
@@ -57,17 +63,22 @@ public class CheckActivity extends AppCompatActivity implements
     private Button btnSave;
     Spinner list;
     String[] dat = {"I", "O"};
-
+    User user;
+    WorkingDate check;
 
     final String Check_Url = "http://acmmh.siteli.com.pe:8080/Yanapan/rest/v1/workingdate";
+    SharedPreferences sharedPreferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check);
-
         lblLatitud = (TextView) findViewById(R.id.lblLatitud);
         lblLongitud = (TextView) findViewById(R.id.lblLongitud);
+
+        Log.d("Preferences",getKeptId());
+
         btnSave = (Button) findViewById(R.id.buttonSave);
         list = (Spinner) findViewById(R.id.spinner1);
 
@@ -81,38 +92,38 @@ public class CheckActivity extends AppCompatActivity implements
                 .build();
 
 
-        WorkingDate check = new WorkingDate();
-        check.setIdUser(0);
-        check.setLongitude("-2.121333");
-        check.setLatitude("-34.54665");
-        check.setType("I");
-
-
-
-        final JSONObject jsonObject = new JSONObject();
-        try {
-            /*
-            jsonObject.put("idVisit", 0);
-            jsonObject.put("longitude", "-2.121333");
-            jsonObject.put("latitude", "-34.54665");
-            jsonObject.put("user", user);
-            jsonObject.put("lstDetailVisitBeneficiary", listaBeneficiario);
-            */
-            jsonObject.put("", check);
-
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-
 
         btnSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
+                user = new User();
+                user.setIdUser(Integer.parseInt(getKeptId()));
+                check = new WorkingDate();
+                check.setUser(user);
+                check.setLongitude(lblLongitud.getText().toString());
+                check.setLatitude(lblLatitud.getText().toString());
+                Log.d("Valor_Seleccionado",list.getSelectedItem().toString());
+                Log.i("Valor_Seleccionado",list.getSelectedItem().toString());
+                check.setType(list.getSelectedItem().toString());
+
+                Log.d("Latitud y longitud",check.getLatitude()+" - " +check.getLongitude() + user.getIdUser() + check.getType());
+                Gson gson = new Gson();
+                JSONObject jsonObject = null;
+                try {
+                  jsonObject = new JSONObject(gson.toJson(check));
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                final JSONObject finalJsonObject = jsonObject;
+                Log.d("JsonObjectJUAN",finalJsonObject.toString());
+
                 //Consume el WebService para grabar
+
                 AndroidNetworking.post(Check_Url)
-                        .addJSONObjectBody(jsonObject) // posting json
+                        .addJSONObjectBody(finalJsonObject) // posting json
                         //.addBodyParameter("visita", String.valueOf(visita))
                         .setPriority(Priority.HIGH)
                         .build()
@@ -122,12 +133,12 @@ public class CheckActivity extends AppCompatActivity implements
                             public void onResponse(JSONObject response) {
                                 // Get Respuesta servicio Login
                                 try {
-                                    int codigo = response.getInt("idUser");
+                                  //  int codigo = response.getInt("idUser");
                                     String latitud = response.getString("longitude");
                                     String longitud = response.getString("latitude");
                                     String type = response.getString("type");
 
-                                    Log.i("onResponse", "Resultado : " + String.valueOf(codigo) + " - " + latitud + " - " + longitud+ " - " + type);
+                                    Log.i("onResponse", "Resultado : " + latitud + " - " + longitud+ " - " + type);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }
@@ -181,7 +192,8 @@ public class CheckActivity extends AppCompatActivity implements
     private void updateUI(Location loc) {
         if (loc != null) {
             lblLatitud.setText("Latitud: " + String.valueOf(loc.getLatitude()));
-            lblLongitud.setText("Longitud: " + String.valueOf(loc.getLongitude()));
+            lblLongitud.setText("Longitud: " +String.valueOf(loc.getLongitude()));
+
         } else {
             lblLatitud.setText("Latitud: (desconocida)");
             lblLongitud.setText("Longitud: (desconocida)");
@@ -210,6 +222,14 @@ public class CheckActivity extends AppCompatActivity implements
             }
         }
     }
-
+    private String getKeptId() {
+        // Obtains stored name if present,
+        // otherwise returns an empty string
+        if(sharedPreferences == null) {
+            sharedPreferences = getSharedPreferences(
+                    PREFS, MODE_PRIVATE);
+        }
+        return sharedPreferences.getString(PREF_ID, "0");
+    }
 
 }
