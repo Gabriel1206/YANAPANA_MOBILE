@@ -25,6 +25,7 @@ import java.util.Date;
 
 import pe.edu.upc.yanapan.R;
 import pe.edu.upc.yanapan.activities.CameraActivity;
+import pe.edu.upc.yanapan.activities.VisitActivity;
 
 /**
  * Created by Juan on 08/10/2016.
@@ -73,7 +74,7 @@ public class Tab3 extends Fragment implements Button.OnClickListener{
 
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 
-        CameraActivity activity = (CameraActivity)getActivity();
+        VisitActivity activity = (VisitActivity)getActivity();
         if (takePictureIntent.resolveActivity(activity.getPackageManager()) != null) {
             // Create the File where the photo should go.
             // If you don't do this, you may get a crash in some devices.
@@ -86,16 +87,16 @@ public class Tab3 extends Fragment implements Button.OnClickListener{
                 toast.show();
             }
             // Continue only if the File was successfully created
-            if (photoFile != null) {
-                Uri fileUri = Uri.fromFile(photoFile);
-                activity.setCapturedImageURI(fileUri);
-                activity.setCurrentPhotoPath(fileUri.getPath());
-                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
-                        activity.getCapturedImageURI());
-                startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
+            //if (photoFile != null) {
+               // Uri fileUri = Uri.fromFile(photoFile);
+               // activity.setCapturedImageURI(fileUri);
+                //activity.setCurrentPhotoPath(fileUri.getPath());
+                //takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT,
+                      //  activity.getCapturedImageURI());
+                //startActivityForResult(takePictureIntent, REQUEST_TAKE_PHOTO);
             }
         }
-    }
+
 
 
 
