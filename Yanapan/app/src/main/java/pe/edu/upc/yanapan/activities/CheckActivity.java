@@ -2,6 +2,7 @@ package pe.edu.upc.yanapan.activities;
 
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.ToggleButton;
 
 import com.androidnetworking.AndroidNetworking;
@@ -104,9 +106,14 @@ public class CheckActivity extends AppCompatActivity implements
                 check.setLongitude(lblLongitud.getText().toString());
                 check.setLatitude(lblLatitud.getText().toString());
                 Log.i("Valor_Seleccionado",list.getSelectedItem().toString());
-                check.setType(list.getSelectedItem().toString());
+                if(list.getSelectedItem().toString().equalsIgnoreCase("IN")){
+                    check.setType("I");
+                } else {
+                    check.setType("O");
+                }
 
-                Log.d("Latitud y longitud",check.getLatitude()+" - " +check.getLongitude() + user.getIdUser() + check.getType());
+
+                Log.i("Latitud y longitud",check.getLatitude()+" - " +check.getLongitude() + user.getIdUser() + check.getType());
                 Gson gson = new Gson();
                 JSONObject jsonObject = null;
                 try {
@@ -117,7 +124,7 @@ public class CheckActivity extends AppCompatActivity implements
                 }
 
                 final JSONObject finalJsonObject = jsonObject;
-                Log.d("JsonObjectJUAN",finalJsonObject.toString());
+                Log.i("JsonObjectJUAN",finalJsonObject.toString());
 
                 //Consume el WebService para grabar
 
@@ -136,16 +143,23 @@ public class CheckActivity extends AppCompatActivity implements
                                     String latitud = response.getString("longitude");
                                     String longitud = response.getString("latitude");
                                     String type = response.getString("type");
-
+                                    if(list.getSelectedItem().toString().equalsIgnoreCase("IN")){
+                                        Toast.makeText(getApplicationContext(), "Se registró el check-in correctamente.", Toast.LENGTH_SHORT).show();
+                                    } else{
+                                        Toast.makeText(getApplicationContext(), "Se registró el check-out correctamente.", Toast.LENGTH_SHORT).show();
+                                    }
+                                    Intent menu = new Intent(CheckActivity.this, MenuActivity.class);
+                                    startActivity(menu );
                                     Log.i("onResponse", "Resultado : " + latitud + " - " + longitud+ " - " + type);
                                 } catch (JSONException e) {
-                                    e.printStackTrace();
+                                    Toast.makeText(getApplicationContext(), "Ocurrió un problema al realizar la operación.", Toast.LENGTH_SHORT).show();
                                 }
                             }
 
                             @Override
                             public void onError(ANError anError) {
                                 Log.d("getLogin: Error","Error:"  + anError.toString());
+                                Toast.makeText(getApplicationContext(), "Ocurrió un problema al realizar la operación.", Toast.LENGTH_SHORT).show();
                             }
                         });
             }
